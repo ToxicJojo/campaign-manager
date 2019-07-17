@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "node"
+
+cache:
+  npm: true # this cashes ~/.npm folder on Travis
+
+script:
+  - npm run test:unit
