@@ -1,9 +1,9 @@
 <template lang='pug'>
   v-app
-    AppNavigationDrawer
+    //AppNavigationDrawer
     AppHeader
     v-content
-      v-container(fluid)
+      v-container.pa-0(fluid fill-height)
         router-view
     AppFooter
 </template>
