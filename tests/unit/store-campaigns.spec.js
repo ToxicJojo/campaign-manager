@@ -36,5 +36,16 @@ describe('VueX - Campaigns', () => {
       expect(state.campaignList).to.have.property(campaign.id)
       expect(state.campaignList[campaign.id]).equal(campaign)
     })
+
+    it('setActiveCampaign sets the active campaign correctly', () => {
+      const state = emptyState()
+      const campaign = {
+        id: 'campaign-id',
+      }
+      state.campaignList['campaign-id'] = campaign
+
+      mutations.setActiveCampaign(state, campaign.id)
+      expect(state.activeCampaign).equal(campaign)
+    })
   })
 })
