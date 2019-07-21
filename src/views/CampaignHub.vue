@@ -1,6 +1,6 @@
 <template lang="pug">
-  .campaign-hub
-    h1 Hub
+  v-layout.campaign-hub.pa-3(column align-center)
+    h1.mb-3 CampaignHub
     template(v-if='isLoading')
       v-progress-circular(indeterminate)
       span Loading campaign data
