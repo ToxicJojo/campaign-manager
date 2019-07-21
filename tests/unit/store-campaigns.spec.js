@@ -4,7 +4,7 @@ import mutations from '@/store/campaigns/mutations'
 
 const emptyState = () => {
   return {
-    campaigns: {},
+    campaignList: {},
     activeCampaign: null,
   }
 }
@@ -12,18 +12,18 @@ const emptyState = () => {
 describe('VueX - Campaigns', () => {
   describe('State', () => {
     it('initial state is correct', () => {
-      expect(initialState.campaigns).to.be.an('object')
+      expect(initialState.campaignList).to.be.an('object')
       expect(initialState.activeCampaign).equal(null)
     })
   })
 
   describe('Mutations', () => {
-    it('setCampaigns sets the campaigns correctly', () => {
+    it('setCampaignList sets the campaigns correctly', () => {
       const state = emptyState()
-      const campaigns = {}
+      const campaignList = {}
 
-      mutations.setCampaigns(state, campaigns)
-      expect(state.campaigns).equal(campaigns)
+      mutations.setCampaignList(state, campaignList)
+      expect(state.campaignList).equal(campaignList)
     })
 
     it('addCampaigns adds the campaign correctly', () => {
@@ -33,8 +33,8 @@ describe('VueX - Campaigns', () => {
       }
 
       mutations.addCampaign(state, campaign)
-      expect(state.campaigns).to.have.property(campaign.id)
-      expect(state.campaigns[campaign.id]).equal(campaign)
+      expect(state.campaignList).to.have.property(campaign.id)
+      expect(state.campaignList[campaign.id]).equal(campaign)
     })
   })
 })

@@ -1,5 +1,5 @@
 const state = {
-  campaigns: {},
+  campaignList: {},
   activeCampaign: null,
 }
 

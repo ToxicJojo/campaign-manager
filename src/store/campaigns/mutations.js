@@ -1,11 +1,11 @@
 import Vue from 'vue'
 
 const mutations = {
-  setCampaigns (state, campaigns) {
-    state.campaigns = campaigns
+  setCampaignList (state, campaignList) {
+    state.campaignList = campaignList
   },
   addCampaign (state, campaign) {
-    Vue.set(state.campaigns, campaign.id, campaign)
+    Vue.set(state.campaignList, campaign.id, campaign)
   },
 }
 
