@@ -5,7 +5,7 @@ const CAMPAIGN_LIST_KEY = 'campaigns'
 const localStorageSync = {
   name: 'Local Storage',
   configured: true,
-  init () {
+  async init () {
     // Initialize the campaign list with an empty object if it doesn't exist yet.
     if (!localStorageHelper.hasObject(CAMPAIGN_LIST_KEY)) {
       localStorageHelper.setObject(CAMPAIGN_LIST_KEY, {})
