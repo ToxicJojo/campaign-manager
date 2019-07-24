@@ -4,10 +4,10 @@
     AppHeader
     v-content
       v-container.pa-0(fluid fill-height)
-        template(v-if='isInitializingStorageProviders')
+        template(v-if='isInitializingSyncProviders')
           v-layout(column fill-height justify-center align-center)
             v-progress-circular.mb-4(indeterminate size='64' color='primary')
-            span Initializing storage providers
+            span Initializing sync providers
         template(v-else)
           router-view
     AppFooter
@@ -27,15 +27,15 @@ export default {
   },
   data () {
     return {
-      isInitializingStorageProviders: false,
+      isInitializingSyncProviders: false,
     }
   },
   mounted () {
-    this.initStorageProviders()
+    this.initSyncProviders()
   },
   methods: {
-    async initStorageProviders () {
-      this.isInitializingStorageProviders = true
+    async initSyncProviders () {
+      this.isInitializingSyncProviders = true
 
       // Initialize all syncProviders that are configured.
       await Promise.all(this.$store.state.syncProviders
@@ -45,7 +45,8 @@ export default {
         .map((syncProvider) => {
           return syncProvider.init()
         }))
-      this.isInitializingStorageProviders = false
+
+      this.isInitializingSyncProviders = false
     },
   },
 }

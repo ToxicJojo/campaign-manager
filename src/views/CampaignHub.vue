@@ -30,7 +30,7 @@ export default {
       this.isLoading = true
 
       // Later on we need to create an action that can fetch a campaign from async sources
-      this.$store.commit('campaigns/setActiveCampaign', campaignId)
+      this.$store.dispatch('campaigns/setActiveCampaign', campaignId)
 
       this.isLoading = false
     },
