@@ -4,7 +4,12 @@
     AppHeader
     v-content
       v-container.pa-0(fluid fill-height)
-        router-view
+        template(v-if='isInitializingSyncProviders')
+          v-layout(column fill-height justify-center align-center)
+            v-progress-circular.mb-4(indeterminate size='64' color='primary')
+            span Initializing sync providers
+        template(v-else)
+          router-view
     AppFooter
 </template>
 
@@ -19,6 +24,30 @@ export default {
     AppNavigationDrawer,
     AppHeader,
     AppFooter,
+  },
+  data () {
+    return {
+      isInitializingSyncProviders: false,
+    }
+  },
+  mounted () {
+    this.initSyncProviders()
+  },
+  methods: {
+    async initSyncProviders () {
+      this.isInitializingSyncProviders = true
+
+      // Initialize all syncProviders that are configured.
+      await Promise.all(this.$store.state.syncProviders
+        .filter((syncProvider) => {
+          return syncProvider.configured
+        })
+        .map((syncProvider) => {
+          return syncProvider.init()
+        }))
+
+      this.isInitializingSyncProviders = false
+    },
   },
 }
 </script>

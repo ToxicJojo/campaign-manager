@@ -42,9 +42,8 @@ describe('VueX - Campaigns', () => {
       const campaign = {
         id: 'campaign-id',
       }
-      state.campaignList['campaign-id'] = campaign
 
-      mutations.setActiveCampaign(state, campaign.id)
+      mutations.setActiveCampaign(state, campaign)
       expect(state.activeCampaign).equal(campaign)
     })
   })

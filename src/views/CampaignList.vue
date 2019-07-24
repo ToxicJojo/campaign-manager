@@ -18,8 +18,8 @@
             span.mb-0.grey--text.text--darken-1 You don't have any campaigns yet.
             p.grey--text.text--darken-1 Get started by creating one!
           template(v-else)
-              template(v-for='campaign in campaigns')
-                v-layout.campaign.mb-4(@click='openCampaign(campaign.id)')
+              template(v-for='(campaign, campaignId) in campaigns')
+                v-layout.campaign.mb-4(@click='openCampaign(campaignId)')
                   v-flex(shrink)
                     v-avatar.mr-3(color='grey')
                   v-layout(column)
@@ -52,15 +52,28 @@ export default {
       return (campaignCount === 0)
     },
   },
+  mounted () {
+    this.loadCampaigns()
+  },
   methods: {
-    createNewCampaign () {
+    async loadCampaigns () {
+      this.isLoading = true
+
+      await this.$store.dispatch('campaigns/loadCampaigns')
+
+      this.isLoading = false
+    },
+    async createNewCampaign () {
       const newCampaign = {
-        name: this.campaignName,
-        description: this.campaignDescription,
+        metaData: {
+          name: this.campaignName,
+          description: this.campaignDescription,
+        },
         id: uuid(),
       }
 
       this.$store.commit('campaigns/addCampaign', newCampaign)
+      await this.$store.dispatch('campaigns/syncCampaign', newCampaign)
       this.openCampaign(newCampaign.id)
     },
     openCampaign (campaignId) {

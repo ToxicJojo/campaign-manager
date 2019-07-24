@@ -7,8 +7,8 @@ const mutations = {
   addCampaign (state, campaign) {
     Vue.set(state.campaignList, campaign.id, campaign)
   },
-  setActiveCampaign (state, campaignId) {
-    state.activeCampaign = state.campaignList[campaignId]
+  setActiveCampaign (state, campaign) {
+    state.activeCampaign = campaign
   },
 }
 
